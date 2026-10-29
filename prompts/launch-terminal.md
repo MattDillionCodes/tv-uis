@@ -1,6 +1,6 @@
-# Launch prep: get "Matrix Home" ready to go public
+# Launch prep: get "Terminal" ready to go public
 
-You're working inside the repo for **Matrix Home**, an Android TV / Google TV home-screen launcher I built (inspired by The Matrix & Unix terminals). I'm about to make this repo public and feature it on my website, where viewers pick a UI and get a prompt that tells *their* Claude Code or Codex to download my release APK and install it on their TV over adb. Your job is to make this project clean, fast, safe, and public-ready — and make sure it matches exactly what the website's install prompt expects.
+You're working inside the repo for **Terminal**, an Android TV / Google TV home-screen launcher I built (inspired by retro computer terminals). I'm about to make this repo public and feature it on my website, where viewers pick a UI and get a prompt that tells *their* Claude Code or Codex to download my release APK and install it on their TV over adb. Your job is to make this project clean, fast, safe, and public-ready — and make sure it matches exactly what the website's install prompt expects.
 
 ## How to work
 - Start by reading the whole repo. Before changing anything, write `LAUNCH_AUDIT.md`: every issue you find, grouped as **Blocker / Should fix / Nice to have**, with file paths. Then show me the summary and wait for my go-ahead.
@@ -13,20 +13,20 @@ The install prompt viewers run depends on these. If the repo already uses a diff
 
 | Field | Value the website uses |
 |---|---|
-| Repo | https://github.com/MattDillionCodes/matrix-home |
-| Release asset name | `matrix-home.apk` (same name on every release) |
-| Checksum asset | `matrix-home.apk.sha256` — format: `<sha256>  matrix-home.apk` |
-| Download URL | https://github.com/MattDillionCodes/matrix-home/releases/latest/download/matrix-home.apk |
-| applicationId | `com.matthew.matrixhome` |
-| Home activity | `com.matthew.matrixhome/.HomeActivity` |
+| Repo | https://github.com/MattDillionCodes/terminal-tv |
+| Release asset name | `terminal-tv.apk` (same name on every release) |
+| Checksum asset | `terminal-tv.apk.sha256` — format: `<sha256>  terminal-tv.apk` |
+| Download URL | https://github.com/MattDillionCodes/terminal-tv/releases/latest/download/terminal-tv.apk |
+| applicationId | `io.github.mattdillioncodes.terminal` |
+| Home activity | `io.github.mattdillioncodes.terminal/com.matthew.matrixhome.HomeActivity` |
 | minSdk | Android 10 (API level to match) |
 
-The home activity must have an intent filter with `MAIN` + `HOME` + `DEFAULT`, and the app must also be launchable from the TV apps list (`LEANBACK_LAUNCHER`). The install prompt runs `adb shell am start -n com.matthew.matrixhome/.HomeActivity` and `cmd package set-home-activity com.matthew.matrixhome/.HomeActivity`, so that component name must resolve.
+The home activity must have an intent filter with `MAIN` + `HOME` + `DEFAULT`, and the app must also be launchable from the TV apps list (`LEANBACK_LAUNCHER`). The install prompt runs `adb shell am start -n io.github.mattdillioncodes.terminal/com.matthew.matrixhome.HomeActivity` and `cmd package set-home-activity io.github.mattdillioncodes.terminal/com.matthew.matrixhome.HomeActivity`, so that component name must resolve.
 
 ## Checklist
 
 ### 1. Name, branding & legal (public = people will look closely)
-- The app name, icon, banner, wallpapers, fonts and sample content must be **original or properly licensed**. Remove any logos, icons, artwork, trademarked names or copied assets from the products that inspired it. "Inspired by The Matrix & Unix terminals" is fine in the README, not in the app name or icon.
+- The app name, icon, banner, wallpapers, fonts and sample content must be **original or properly licensed**. Remove any logos, icons, artwork, trademarked names or copied assets from the products that inspired it. "Inspired by retro computer terminals" is fine in the README, not in the app name or icon.
 - Check every font and image for its license; list them in `THIRD_PARTY_NOTICES.md`.
 - If any code came from another open-source launcher or library, find its license and tell me what it requires (e.g. GPL code means this repo must stay GPL-compatible). Suggest a LICENSE for the repo and ask me before adding it.
 - README gets a short disclaimer: independent project, not affiliated with Google, Amazon, the device makers, or the products that inspired it.
@@ -52,12 +52,12 @@ The home activity must have an intent filter with `MAIN` + `HOME` + `DEFAULT`, a
 - Many Google TV sticks have ~2 GB RAM, slow CPUs, and **32-bit-only** userspace. If there's native code, ship `armeabi-v7a` as well as `arm64-v8a`. Test or at least reason about the low end.
 - Release build: R8 minify + `shrinkResources` on, with keep rules verified (release build must actually run, not just compile).
 - Images: cached, downsampled to display size, no full-res bitmaps in lists. No wake locks, no polling loops, no work while the screen is idle.
-- Measure cold start and memory if a device is connected (`adb shell am start -W -n com.matthew.matrixhome/.HomeActivity`, `adb shell dumpsys meminfo com.matthew.matrixhome`). Report numbers before/after.
+- Measure cold start and memory if a device is connected (`adb shell am start -W -n io.github.mattdillioncodes.terminal/com.matthew.matrixhome.HomeActivity`, `adb shell dumpsys meminfo io.github.mattdillioncodes.terminal`). Report numbers before/after.
 - Report APK size before/after.
 
 ### 6. Build & release pipeline
 - Version: semantic `versionName` (start at `1.0.0` for launch) and an increasing `versionCode`.
-- Add a GitHub Actions workflow: on a tag like `v1.0.0` → build the signed release APK → rename it to exactly `matrix-home.apk` → generate `matrix-home.apk.sha256` → create a GitHub Release with notes pulled from `CHANGELOG.md`, attaching both files.
+- Add a GitHub Actions workflow: on a tag like `v1.0.0` → build the signed release APK → rename it to exactly `terminal-tv.apk` → generate `terminal-tv.apk.sha256` → create a GitHub Release with notes pulled from `CHANGELOG.md`, attaching both files.
 - The keystore comes from repo secrets (e.g. base64 keystore + passwords). Tell me exactly which secrets to add and how — don't add them yourself. **Remind me to back up the keystore**: if it's lost, viewers can't update without uninstalling.
 - Run `./gradlew lint` and `./gradlew assembleRelease`; fix errors and anything lint marks as a real problem.
 
@@ -74,17 +74,17 @@ If a TV is connected over adb, capture fresh screenshots for my site: `adb exec-
 2. `SITE_ENTRY.json` — the block for my website config, filled with real values from the repo:
    ```json
    {
-     "id": "matrix-home",
-     "name": "Matrix Home",
-     "inspiredBy": "The Matrix & Unix terminals",
+     "id": "terminal",
+     "name": "Terminal",
+     "inspiredBy": "retro computer terminals",
      "tagline": "",
      "description": "",
      "status": "available",
      "version": "",
      "features": [],
      "removed": [],
-     "repo": "https://github.com/MattDillionCodes/matrix-home",
-     "apkName": "matrix-home.apk",
+     "repo": "https://github.com/MattDillionCodes/terminal-tv",
+     "apkName": "terminal-tv.apk",
      "packageName": "",
      "homeActivity": "",
      "minAndroid": "",
