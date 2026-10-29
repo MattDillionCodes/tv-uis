@@ -195,7 +195,7 @@ window.UIS = [
     tagline: "Big Live Tiles, a greeting, and your accent color everywhere.",
     description:
       "A Start screen made of Live Tiles: weather, clock and your apps update right on the tile. Swipe up for the Action Center with quick toggles, volume, screensaver timer and 20 accent colors. Go idle and it drops into a lock-screen clock.",
-    status: "coming-soon",
+    status: "available",
     version: "1.0.0",
     accent: "#e0245e",
     layout: "tiles",
