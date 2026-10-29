@@ -66,8 +66,8 @@ window.UIS = [
     tagline: "Widgets, a dock, and a real Control Center. Your TV, iPad-style.",
     description:
       "A widget-first home screen: analog clock, calendar and a 5-day forecast up top, your favorite apps in a dock, and everything else one click away in the App Library. Control Center handles Wi-Fi, Bluetooth, volume, inputs and StandBy without digging through Settings.",
-    status: "coming-soon",
-    version: "1.0",
+    status: "available",
+    version: "1.0.0",
     accent: "#c45bd8",
     layout: "hero",
     cover: "assets/slate-home/1.jpg",
@@ -91,7 +91,7 @@ window.UIS = [
     tagline: "A frosted-glass dock over big, calm wallpapers.",
     description:
       "Your apps sit in a translucent glass dock with a top shelf that names what you're on. A glass Control Center handles volume, sleep timer, light/dark mode and how see-through the glass is. Leave it idle and it drifts into an ambient clock screen.",
-    status: "coming-soon",
+    status: "available",
     version: "1.1.0",
     accent: "#7fb2ff",
     layout: "hero",
@@ -118,7 +118,7 @@ window.UIS = [
     tagline: "Console-style home with big app art and a quick menu.",
     description:
       "A row of recent apps up top, the selected app's art filling the screen, and a big Open button. Hit the quick menu for time, weather, volume and shortcuts. Pick from animated wallpapers like Waves, Particles, Flow and Glow.",
-    status: "coming-soon",
+    status: "available",
     version: "1.0.0",
     accent: "#3b6ff5",
     layout: "tiles",
@@ -143,8 +143,8 @@ window.UIS = [
     tagline: "The glowing green orb is back, and now it runs your TV.",
     description:
       "A pulsing green orb with a blade menu wired into it. Resume jumps back into your last app, Music plays with a full-screen light show, and the screensaver dims everything down to a floating orb and clock.",
-    status: "coming-soon",
-    version: "1.0",
+    status: "available",
+    version: "1.0.0",
     accent: "#8ee63c",
     layout: "sidebar",
     cover: "assets/orb/1.jpg",
@@ -170,8 +170,8 @@ window.UIS = [
     tagline: "Run your TV from a green-on-black terminal.",
     description:
       "Your TV boots to a shell prompt. Favorites sit on the command line, apps/ opens everything, and system/ handles weather, wallpaper, color and your name. Go idle and digital rain takes over with a big clock. A built-in help page teaches the remote in 30 seconds.",
-    status: "coming-soon",
-    version: "0.1.0",
+    status: "available",
+    version: "1.0.0",
     accent: "#3cff7a",
     layout: "minimal",
     cover: "assets/terminal/1.jpg",
@@ -220,8 +220,8 @@ window.UIS = [
     tagline: "A big clock, a short list, and a tiny pixel pet.",
     description:
       "Calm, text-only home screen: a huge clock, the date and weather, and just the apps you use. A little pixel cat or dog hangs out next to the weather. Scan a QR code to send a wallpaper from your phone, then dim it to taste.",
-    status: "coming-soon",
-    version: "0.1.0",
+    status: "available",
+    version: "1.0.0",
     accent: "#d8c3a0",
     layout: "minimal",
     cover: "assets/zen/1.jpg",
