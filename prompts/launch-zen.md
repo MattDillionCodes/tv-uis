@@ -17,11 +17,11 @@ The install prompt viewers run depends on these. If the repo already uses a diff
 | Release asset name | `zen-tv.apk` (same name on every release) |
 | Checksum asset | `zen-tv.apk.sha256` — format: `<sha256>  zen-tv.apk` |
 | Download URL | https://github.com/MattDillionCodes/zen-tv/releases/latest/download/zen-tv.apk |
-| applicationId | `com.mattdillionshoots.zen` |
-| Home activity | `com.mattdillionshoots.zen/.MainActivity` |
+| applicationId | `com.zen.tv` |
+| Home activity | `com.zen.tv/.MainActivity` |
 | minSdk | Android 9 (API level to match) |
 
-The home activity must have an intent filter with `MAIN` + `HOME` + `DEFAULT`, and the app must also be launchable from the TV apps list (`LEANBACK_LAUNCHER`). The install prompt runs `adb shell am start -n com.mattdillionshoots.zen/.MainActivity` and `cmd package set-home-activity com.mattdillionshoots.zen/.MainActivity`, so that component name must resolve.
+The home activity must have an intent filter with `MAIN` + `HOME` + `DEFAULT`, and the app must also be launchable from the TV apps list (`LEANBACK_LAUNCHER`). The install prompt runs `adb shell am start -n com.zen.tv/.MainActivity` and `cmd package set-home-activity com.zen.tv/.MainActivity`, so that component name must resolve.
 
 ## Checklist
 
@@ -52,7 +52,7 @@ The home activity must have an intent filter with `MAIN` + `HOME` + `DEFAULT`, a
 - Many Google TV sticks have ~2 GB RAM, slow CPUs, and **32-bit-only** userspace. If there's native code, ship `armeabi-v7a` as well as `arm64-v8a`. Test or at least reason about the low end.
 - Release build: R8 minify + `shrinkResources` on, with keep rules verified (release build must actually run, not just compile).
 - Images: cached, downsampled to display size, no full-res bitmaps in lists. No wake locks, no polling loops, no work while the screen is idle.
-- Measure cold start and memory if a device is connected (`adb shell am start -W -n com.mattdillionshoots.zen/.MainActivity`, `adb shell dumpsys meminfo com.mattdillionshoots.zen`). Report numbers before/after.
+- Measure cold start and memory if a device is connected (`adb shell am start -W -n com.zen.tv/.MainActivity`, `adb shell dumpsys meminfo com.zen.tv`). Report numbers before/after.
 - Report APK size before/after.
 
 ### 6. Build & release pipeline

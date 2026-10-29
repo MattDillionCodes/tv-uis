@@ -17,11 +17,11 @@ The install prompt viewers run depends on these. If the repo already uses a diff
 | Release asset name | `arcade-tv.apk` (same name on every release) |
 | Checksum asset | `arcade-tv.apk.sha256` — format: `<sha256>  arcade-tv.apk` |
 | Download URL | https://github.com/MattDillionCodes/arcade-tv/releases/latest/download/arcade-tv.apk |
-| applicationId | `com.mattdillionshoots.arcade` |
-| Home activity | `com.mattdillionshoots.arcade/.MainActivity` |
+| applicationId | `com.matthew.arcade` |
+| Home activity | `com.matthew.arcade/.HomeActivity` |
 | minSdk | Android 9 (API level to match) |
 
-The home activity must have an intent filter with `MAIN` + `HOME` + `DEFAULT`, and the app must also be launchable from the TV apps list (`LEANBACK_LAUNCHER`). The install prompt runs `adb shell am start -n com.mattdillionshoots.arcade/.MainActivity` and `cmd package set-home-activity com.mattdillionshoots.arcade/.MainActivity`, so that component name must resolve.
+The home activity must have an intent filter with `MAIN` + `HOME` + `DEFAULT`, and the app must also be launchable from the TV apps list (`LEANBACK_LAUNCHER`). The install prompt runs `adb shell am start -n com.matthew.arcade/.HomeActivity` and `cmd package set-home-activity com.matthew.arcade/.HomeActivity`, so that component name must resolve.
 
 ## Checklist
 
@@ -52,7 +52,7 @@ The home activity must have an intent filter with `MAIN` + `HOME` + `DEFAULT`, a
 - Many Google TV sticks have ~2 GB RAM, slow CPUs, and **32-bit-only** userspace. If there's native code, ship `armeabi-v7a` as well as `arm64-v8a`. Test or at least reason about the low end.
 - Release build: R8 minify + `shrinkResources` on, with keep rules verified (release build must actually run, not just compile).
 - Images: cached, downsampled to display size, no full-res bitmaps in lists. No wake locks, no polling loops, no work while the screen is idle.
-- Measure cold start and memory if a device is connected (`adb shell am start -W -n com.mattdillionshoots.arcade/.MainActivity`, `adb shell dumpsys meminfo com.mattdillionshoots.arcade`). Report numbers before/after.
+- Measure cold start and memory if a device is connected (`adb shell am start -W -n com.matthew.arcade/.HomeActivity`, `adb shell dumpsys meminfo com.matthew.arcade`). Report numbers before/after.
 - Report APK size before/after.
 
 ### 6. Build & release pipeline

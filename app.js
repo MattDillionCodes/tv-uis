@@ -363,7 +363,7 @@
 
             <dl class="specs">
               <div><dt>Works on</dt><dd>Android TV & Google TV ${esc(ui.minAndroid || "9")}+</dd></div>
-              ${ui.version ? `<div><dt>Version</dt><dd>${esc(ui.version)}</dd></div>` : ""}
+              ${ui.version && ui.status === "available" ? `<div><dt>Version</dt><dd>${esc(ui.version)}</dd></div>` : ""}
               <div><dt>Source</dt><dd><a href="${esc(ui.repo)}" target="_blank" rel="noopener">${esc(ownerRepo(ui.repo))}</a></dd></div>
             </dl>
             <a class="btn primary" href="#setup" data-scroll="setup">Put it on my TV ↓</a>

@@ -17,11 +17,11 @@ The install prompt viewers run depends on these. If the repo already uses a diff
 | Release asset name | `orb.apk` (same name on every release) |
 | Checksum asset | `orb.apk.sha256` — format: `<sha256>  orb.apk` |
 | Download URL | https://github.com/MattDillionCodes/orb/releases/latest/download/orb.apk |
-| applicationId | `com.mattdillionshoots.orb` |
-| Home activity | `com.mattdillionshoots.orb/.MainActivity` |
-| minSdk | Android 9 (API level to match) |
+| applicationId | `com.orbdash` |
+| Home activity | `com.orbdash/.MainActivity` |
+| minSdk | Android 8 (API level to match) |
 
-The home activity must have an intent filter with `MAIN` + `HOME` + `DEFAULT`, and the app must also be launchable from the TV apps list (`LEANBACK_LAUNCHER`). The install prompt runs `adb shell am start -n com.mattdillionshoots.orb/.MainActivity` and `cmd package set-home-activity com.mattdillionshoots.orb/.MainActivity`, so that component name must resolve.
+The home activity must have an intent filter with `MAIN` + `HOME` + `DEFAULT`, and the app must also be launchable from the TV apps list (`LEANBACK_LAUNCHER`). The install prompt runs `adb shell am start -n com.orbdash/.MainActivity` and `cmd package set-home-activity com.orbdash/.MainActivity`, so that component name must resolve.
 
 ## Checklist
 
@@ -52,7 +52,7 @@ The home activity must have an intent filter with `MAIN` + `HOME` + `DEFAULT`, a
 - Many Google TV sticks have ~2 GB RAM, slow CPUs, and **32-bit-only** userspace. If there's native code, ship `armeabi-v7a` as well as `arm64-v8a`. Test or at least reason about the low end.
 - Release build: R8 minify + `shrinkResources` on, with keep rules verified (release build must actually run, not just compile).
 - Images: cached, downsampled to display size, no full-res bitmaps in lists. No wake locks, no polling loops, no work while the screen is idle.
-- Measure cold start and memory if a device is connected (`adb shell am start -W -n com.mattdillionshoots.orb/.MainActivity`, `adb shell dumpsys meminfo com.mattdillionshoots.orb`). Report numbers before/after.
+- Measure cold start and memory if a device is connected (`adb shell am start -W -n com.orbdash/.MainActivity`, `adb shell dumpsys meminfo com.orbdash`). Report numbers before/after.
 - Report APK size before/after.
 
 ### 6. Build & release pipeline

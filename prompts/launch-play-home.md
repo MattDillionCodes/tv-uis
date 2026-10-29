@@ -17,11 +17,11 @@ The install prompt viewers run depends on these. If the repo already uses a diff
 | Release asset name | `play-home.apk` (same name on every release) |
 | Checksum asset | `play-home.apk.sha256` — format: `<sha256>  play-home.apk` |
 | Download URL | https://github.com/MattDillionCodes/play-home/releases/latest/download/play-home.apk |
-| applicationId | `com.mattdillionshoots.playhome` |
-| Home activity | `com.mattdillionshoots.playhome/.MainActivity` |
-| minSdk | Android 9 (API level to match) |
+| applicationId | `com.matthew.playhome` |
+| Home activity | `com.matthew.playhome/.HomeActivity` |
+| minSdk | Android 12 (API level to match) |
 
-The home activity must have an intent filter with `MAIN` + `HOME` + `DEFAULT`, and the app must also be launchable from the TV apps list (`LEANBACK_LAUNCHER`). The install prompt runs `adb shell am start -n com.mattdillionshoots.playhome/.MainActivity` and `cmd package set-home-activity com.mattdillionshoots.playhome/.MainActivity`, so that component name must resolve.
+The home activity must have an intent filter with `MAIN` + `HOME` + `DEFAULT`, and the app must also be launchable from the TV apps list (`LEANBACK_LAUNCHER`). The install prompt runs `adb shell am start -n com.matthew.playhome/.HomeActivity` and `cmd package set-home-activity com.matthew.playhome/.HomeActivity`, so that component name must resolve.
 
 ## Checklist
 
@@ -52,7 +52,7 @@ The home activity must have an intent filter with `MAIN` + `HOME` + `DEFAULT`, a
 - Many Google TV sticks have ~2 GB RAM, slow CPUs, and **32-bit-only** userspace. If there's native code, ship `armeabi-v7a` as well as `arm64-v8a`. Test or at least reason about the low end.
 - Release build: R8 minify + `shrinkResources` on, with keep rules verified (release build must actually run, not just compile).
 - Images: cached, downsampled to display size, no full-res bitmaps in lists. No wake locks, no polling loops, no work while the screen is idle.
-- Measure cold start and memory if a device is connected (`adb shell am start -W -n com.mattdillionshoots.playhome/.MainActivity`, `adb shell dumpsys meminfo com.mattdillionshoots.playhome`). Report numbers before/after.
+- Measure cold start and memory if a device is connected (`adb shell am start -W -n com.matthew.playhome/.HomeActivity`, `adb shell dumpsys meminfo com.matthew.playhome`). Report numbers before/after.
 - Report APK size before/after.
 
 ### 6. Build & release pipeline
