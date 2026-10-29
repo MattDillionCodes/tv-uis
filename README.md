@@ -74,3 +74,7 @@ Device notes live in `setup-data.js`:
 - Codex on Windows routes through WSL (OpenAI's recommended setup).
 
 If a device's menus change, edit its `devSteps` / `ipPath` in `setup-data.js`.
+
+## Publishing an update
+
+The live site is GitHub Pages from `MattDillionCodes/tv-uis` (main branch). After changing files, bump the `?v=` number on the CSS/JS links in `index.html` so visitors get the new version right away instead of a cached copy.
